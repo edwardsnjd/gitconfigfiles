@@ -1,0 +1,36 @@
+# To use these git aliases, add the following to your git config file.
+#
+# [include]
+#	path=.gitconfig_aliases
+#
+# Your global git config file is ~/.gitconfig.
+# The repository git config file is {repo}/.git/config.
+
+# Log formatting with %Cxxx
+# -------------------------
+# For formatting log text with colour, we can use the %Cxxx placeholder.
+# E.g. to colour just "Foo" in bold red: "Normal text %C(red bold)Foo%Creset Normal text"
+# Available colours: normal, black, red, green, yellow, blue, magenta, cyan and white
+# Available attributes: bold, dim, ul, blink and reverse.
+
+[alias]
+	# Less typing
+	ch = checkout
+	co = commit
+	df = diff
+	dfc = diff --cached
+	dfw = diff --word-diff
+
+	# Concise status
+	st = status --short --branch
+
+	# Better log
+	lg = log --color --graph --pretty=format:'%C(yellow)%h %C(green)%ad%C(reset) %s %C(green)(%cr) %C(cyan)<%an>%C(red)%d%C(reset)' --abbrev-commit --decorate --date=short -n20
+	lg-today = !git lg --since=12am
+
+	# Better log (+stats)
+	lgs = !git lg --numstat
+	lgs-today = !git lgs --since=12am
+
+	# List aliases
+	la = !git config --get-regexp alias | cut -c 7-
